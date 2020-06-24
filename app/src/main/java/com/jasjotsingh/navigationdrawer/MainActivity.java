@@ -17,7 +17,7 @@ import android.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
     NavigationView navigationView;
@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
 
         navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
@@ -46,7 +47,30 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-        }}}
+        }}
+
+    public void displayToastMessage(String string) {
+        Toast.makeText(MainActivity.this, string, Toast.LENGTH_SHORT).show();
+    }
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.nav_item_one:
+            case R.id.nav_item_seven:
+            case R.id.nav_item_six:
+            case R.id.nav_item_five:
+            case R.id.nav_item_four:
+            case R.id.nav_item_three:
+            case R.id.nav_item_two:
+                displayToastMessage(item.getTitle().toString());
+                break;
+
+        }
+        return  true;
+    }
+}
+
+
 
 
 
